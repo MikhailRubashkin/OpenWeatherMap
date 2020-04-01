@@ -23,15 +23,15 @@ public class OpenWeatherMap {
         this.id = id;
     }
 
-    public String getMake() {
+    public String getDay() {
         return day;
     }
 
-    public void setMake(String make) {
-        this.day = make;
+    public void setDay(String day) {
+        this.day = day;
     }
 
-    public String getModel() {
+    public String getCity() {
         return city;
     }
 
@@ -43,8 +43,8 @@ public class OpenWeatherMap {
         this.description = description;
     }
 
-    public void setModel(String model) {
-        this.city = model;
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public Integer getYear() {

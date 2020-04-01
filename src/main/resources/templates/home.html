@@ -22,11 +22,11 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="home : ${list}">
-        <td th:text="${home.day}"></td>
-        <td th:text="${home.city}"></td>
-        <td th:text="${home.description}"></td>
-        <td th:text="${home.year}"></td>
+    <tr th:each="openweathermap : ${list}">
+        <td th:text="${openweathermap.day}"></td>
+        <td th:text="${openweathermap.city}"></td>
+        <td th:text="${openweathermap.description}"></td>
+        <td th:text="${openweathermap.year}"></td>
     </tr>
     </tbody>
 </table>
