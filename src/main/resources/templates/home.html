@@ -19,6 +19,7 @@
         <th>City</th>
         <th>Description</th>
         <th>Year</th>
+        <th>nn</th>
     </tr>
     </thead>
     <tbody>
@@ -30,6 +31,24 @@
     </tr>
     </tbody>
 </table>
+
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Weather</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="weatherpojo : ${lists}">
+        <td th:text="${weatherpojo.name}"></td>
+        <td th:text="${weatherpojo.base}"></td>
+        <td th:text="${weatherpojo.id}"></td>
+    </tr>
+    </tbody>
+</table>
+
 <br />
 <h2>Add</h2>
 <form action="/add" method="POST">
