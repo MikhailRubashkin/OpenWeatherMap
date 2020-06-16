@@ -32,21 +32,6 @@ public class JsonUtils {
         return stringBuilder.toString();
     }
 
-    public static String parseCurrentWeatherJson(String resultJson) {
-        try {
-            JSONObject weatherJsonObject = (JSONObject) JSONValue.parseWithException(resultJson);
-            weatherJsonObject.get("name");
-            //weatherJsonObject.get("main");
-            //weatherJsonObject.get("description");
-            JSONArray weatherArray = (JSONArray) weatherJsonObject.get("weather");
-            JSONObject weatherData = (JSONObject) weatherArray.get(0);
-                    weatherData.get("description");
-        } catch (org.json.simple.parser.ParseException e) {
-            e.printStackTrace();
-        }
-        return resultJson;
-    }
-
     public static URL createUrl(String link) {
         try {
             return new URL(link);

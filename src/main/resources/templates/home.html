@@ -19,7 +19,6 @@
         <th>City</th>
         <th>Description</th>
         <th>Year</th>
-        <th>nn</th>
     </tr>
     </thead>
     <tbody>
@@ -31,13 +30,16 @@
     </tr>
     </tbody>
 </table>
-
+<a>Weather London</a>
 <table>
     <thead>
     <tr>
         <th>Name</th>
-        <th>Weather</th>
-        <th>Description</th>
+        <th>Base</th>
+        <th>Id</th>
+        <th>Visibility</th>
+        <th>dt</th>
+        <th>Timezone</th>
     </tr>
     </thead>
     <tbody>
@@ -45,6 +47,9 @@
         <td th:text="${weatherpojo.name}"></td>
         <td th:text="${weatherpojo.base}"></td>
         <td th:text="${weatherpojo.id}"></td>
+        <td th:text="${weatherpojo.visibility}"></td>
+        <td th:text="${weatherpojo.dt}"></td>
+        <td th:text="${weatherpojo.timezone}"></td>
     </tr>
     </tbody>
 </table>

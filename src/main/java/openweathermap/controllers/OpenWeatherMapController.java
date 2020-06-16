@@ -40,7 +40,6 @@ public class OpenWeatherMapController {
 
         URL url = JsonUtils.createUrl(Weather.WEATHER_URL);
         String resultJson = JsonUtils.parseUrl(url);
-        //String resolt = JsonUtils.parseCurrentWeatherJson(resultJson);
         ObjectMapper mapper = new ObjectMapper();
         WeatherPojo person = mapper.readValue(resultJson, WeatherPojo.class);
         weatherPojoRepository.save(person);
