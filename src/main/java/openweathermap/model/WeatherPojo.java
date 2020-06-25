@@ -1,9 +1,12 @@
 package openweathermap.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Document
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -15,6 +18,17 @@ public class WeatherPojo implements Serializable {
     private String timezone;
     private Long id;
     private String name;
+
+    @JsonProperty("weather")
+    public List<Weather> weathers = new ArrayList<Weather>();
+
+    public List<Weather> getWeathers() {
+        return weathers;
+    }
+
+    public void setWeathers(List<Weather> weathers) {
+        this.weathers = weathers;
+    }
 
     public String getBase() {
         return base;
