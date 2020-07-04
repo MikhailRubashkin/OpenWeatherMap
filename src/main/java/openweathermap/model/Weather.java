@@ -2,6 +2,8 @@ package openweathermap.model;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Objects;
+
 @Document
 public class Weather{
     private Long id;
@@ -39,5 +41,31 @@ public class Weather{
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Weather weather = (Weather) o;
+        return Objects.equals(id, weather.id) &&
+                Objects.equals(icon, weather.icon) &&
+                Objects.equals(main, weather.main) &&
+                Objects.equals(description, weather.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, icon, main, description);
+    }
+
+    @Override
+    public String toString() {
+        return "Weather{" +
+                "id=" + id +
+                ", icon='" + icon + '\'' +
+                ", main='" + main + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 }

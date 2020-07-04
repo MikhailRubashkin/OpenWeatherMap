@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Document
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -76,5 +77,37 @@ public class WeatherPojo implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        WeatherPojo that = (WeatherPojo) o;
+        return Objects.equals(base, that.base) &&
+                Objects.equals(visibility, that.visibility) &&
+                Objects.equals(dt, that.dt) &&
+                Objects.equals(timezone, that.timezone) &&
+                Objects.equals(id, that.id) &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(weathers, that.weathers);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(base, visibility, dt, timezone, id, name, weathers);
+    }
+
+    @Override
+    public String toString() {
+        return "WeatherPojo{" +
+                "base='" + base + '\'' +
+                ", visibility='" + visibility + '\'' +
+                ", dt='" + dt + '\'' +
+                ", timezone='" + timezone + '\'' +
+                ", id=" + id +
+                ", name='" + name + '\'' +
+                ", weathers=" + weathers +
+                '}';
     }
 }
