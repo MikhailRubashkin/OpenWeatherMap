@@ -3,6 +3,8 @@ package openweathermap.model;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Objects;
+
 @Document
 public class Sys{
     private String type;
@@ -49,5 +51,33 @@ public class Sys{
 
     public void setSunset(String sunset) {
         this.sunset = sunset;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Sys sys = (Sys) o;
+        return Objects.equals(type, sys.type) &&
+                Objects.equals(id, sys.id) &&
+                Objects.equals(country, sys.country) &&
+                Objects.equals(sunrise, sys.sunrise) &&
+                Objects.equals(sunset, sys.sunset);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(type, id, country, sunrise, sunset);
+    }
+
+    @Override
+    public String toString() {
+        return "Sys{" +
+                "type='" + type + '\'' +
+                ", id=" + id +
+                ", country='" + country + '\'' +
+                ", sunrise='" + sunrise + '\'' +
+                ", sunset='" + sunset + '\'' +
+                '}';
     }
 }

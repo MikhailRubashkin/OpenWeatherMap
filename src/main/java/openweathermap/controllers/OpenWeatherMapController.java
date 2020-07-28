@@ -1,6 +1,7 @@
 package openweathermap.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import openweathermap.model.WeatherPojo;
 import openweathermap.repository.OpenWeatherMapMongoRepository;
@@ -41,6 +42,7 @@ public class OpenWeatherMapController {
         URL url = JsonUtils.createUrl(Weather.WEATHER_URL);
         String resultJson = JsonUtils.parseUrl(url);
         ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
         WeatherPojo person = mapper.readValue(resultJson, WeatherPojo.class);
         weatherPojoRepository.save(person);
         model.addAttribute("list", openWeatherMapMongoRepository.findAll());

@@ -54,6 +54,20 @@
         <td th:text="${weatherpojo.weathers}"></td>
     </tr>
     </tbody>
+
+    <tr>
+        <th>Main</th>
+        <th>Coord</th>
+        <th>Clauds</th>
+        <th>Sys</th>
+        <th>Wind</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="weatherpojo : ${lists}">
+        <td th:text="${weatherpojo.main}"></td>
+    </tr>
+    </tbody>
 </table>
 
 <br />

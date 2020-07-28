@@ -2,6 +2,8 @@ package openweathermap.model;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Objects;
+
 @Document
 public class Clouds {
 
@@ -13,5 +15,25 @@ public class Clouds {
 
     public void setAll(String all) {
         this.all = all;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Clouds clouds = (Clouds) o;
+        return Objects.equals(all, clouds.all);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(all);
+    }
+
+    @Override
+    public String toString() {
+        return "Clouds{" +
+                "all='" + all + '\'' +
+                '}';
     }
 }
