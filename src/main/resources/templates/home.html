@@ -66,6 +66,10 @@
     <tbody>
     <tr th:each="weatherpojo : ${lists}">
         <td th:text="${weatherpojo.main}"></td>
+        <td th:text="${weatherpojo.coord}"></td>
+        <td th:text="${weatherpojo.clouds}"></td>
+        <td th:text="${weatherpojo.sys}"></td>
+        <td th:text="${weatherpojo.wind}"></td>
     </tr>
     </tbody>
 </table>

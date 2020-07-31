@@ -1,11 +1,13 @@
 package openweathermap.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Objects;
 
 @Document
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Sys{
     private String type;
     private Long id;

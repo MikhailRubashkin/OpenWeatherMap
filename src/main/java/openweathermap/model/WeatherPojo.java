@@ -25,36 +25,30 @@ public class WeatherPojo implements Serializable {
     @JsonProperty("weather")
     private List<Weather> weathers = new ArrayList<Weather>();
 
-    @JsonProperty("cloud")
-    private List<Clouds> cloud = new ArrayList<Clouds>();
+    @JsonProperty("clouds")
+    private List<Clouds> clouds = new ArrayList<Clouds>();
 
-    @JsonProperty("coords")
-    private List<Coord> coords = new ArrayList<Coord>();
+    @JsonProperty("coord")
+    private List<Coord> coord = new ArrayList<Coord>();
 
     @JsonProperty("main")
     private List<Main> main = new ArrayList<Main>();
 
-    @JsonProperty("syss")
-    private List<Sys> syss = new ArrayList<Sys>();
+    @JsonProperty("sys")
+    private List<Sys> sys = new ArrayList<Sys>();
 
-    @JsonProperty("winds")
-    private List<Wind> winds = new ArrayList<Wind>();
+    @JsonProperty("wind")
+    private List<Wind> wind = new ArrayList<Wind>();
 
-    public List<Clouds> getCloud() {
-        return cloud;
+    public List<Clouds> getClouds() {
+        return clouds;
     }
 
-    public void setCloud(List<Clouds> cloud) {
-        this.cloud = cloud;
+    public void setClouds(List<Clouds> clouds) {
+        this.clouds = clouds;
     }
 
-    public List<Coord> getCoords() {
-        return coords;
-    }
 
-    public void setCoords(List<Coord> coords) {
-        this.coords = coords;
-    }
 
     public List<Main> getMain() {
         return main;
@@ -64,20 +58,28 @@ public class WeatherPojo implements Serializable {
         this.main = main;
     }
 
-    public List<Sys> getSyss() {
-        return syss;
+    public List<Coord> getCoord() {
+        return coord;
     }
 
-    public void setSyss(List<Sys> syss) {
-        this.syss = syss;
+    public void setCoord(List<Coord> coord) {
+        this.coord = coord;
     }
 
-    public List<Wind> getWinds() {
-        return winds;
+    public List<Sys> getSys() {
+        return sys;
     }
 
-    public void setWinds(List<Wind> winds) {
-        this.winds = winds;
+    public void setSys(List<Sys> sys) {
+        this.sys = sys;
+    }
+
+    public List<Wind> getWind() {
+        return wind;
+    }
+
+    public void setWind(List<Wind> wind) {
+        this.wind = wind;
     }
 
     public List<Weather> getWeathers() {
@@ -148,16 +150,16 @@ public class WeatherPojo implements Serializable {
                 Objects.equals(id, that.id) &&
                 Objects.equals(name, that.name) &&
                 Objects.equals(weathers, that.weathers) &&
-                Objects.equals(cloud, that.cloud) &&
-                Objects.equals(coords, that.coords) &&
+                Objects.equals(clouds, that.clouds) &&
+                Objects.equals(coord, that.coord) &&
                 Objects.equals(main, that.main) &&
-                Objects.equals(syss, that.syss) &&
-                Objects.equals(winds, that.winds);
+                Objects.equals(sys, that.sys) &&
+                Objects.equals(wind, that.wind);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(base, visibility, dt, timezone, id, name, weathers, cloud, coords, main, syss, winds);
+        return Objects.hash(base, visibility, dt, timezone, id, name, weathers, clouds, coord, main, sys, wind);
     }
 
     @Override
@@ -170,11 +172,11 @@ public class WeatherPojo implements Serializable {
                 ", id=" + id +
                 ", name='" + name + '\'' +
                 ", weathers=" + weathers +
-                ", cloud=" + cloud +
-                ", coords=" + coords +
+                ", clouds=" + clouds +
+                ", coord=" + coord +
                 ", main=" + main +
-                ", syss=" + syss +
-                ", winds=" + winds +
+                ", sys=" + sys +
+                ", wind=" + wind +
                 '}';
     }
 }
