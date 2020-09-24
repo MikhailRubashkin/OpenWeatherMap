@@ -1,18 +1,19 @@
 package openweathermap.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.data.mongodb.core.aggregation.VariableOperators;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
 
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Document
 @JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class WeatherPojo implements Serializable {
 
     private String base;
@@ -22,14 +23,16 @@ public class WeatherPojo implements Serializable {
     private Long id;
     private String name;
 
+    WeatherPojo(){}
+
     @JsonProperty("weather")
     private List<Weather> weathers = new ArrayList<Weather>();
 
     @JsonProperty("clouds")
-    private List<Clouds> clouds = new ArrayList<Clouds>();
+    private Map<String, Integer> clouds;
 
     @JsonProperty("coord")
-    private List<Coord> coord = new ArrayList<Coord>();
+    private Map<String, Integer> coord;
 
     @JsonProperty("main")
     private List<Main> main = new ArrayList<Main>();
@@ -40,15 +43,13 @@ public class WeatherPojo implements Serializable {
     @JsonProperty("wind")
     private List<Wind> wind = new ArrayList<Wind>();
 
-    public List<Clouds> getClouds() {
+    public Map<String, Integer> getClouds() {
         return clouds;
     }
 
-    public void setClouds(List<Clouds> clouds) {
+    public void setClouds(Map<String, Integer> clouds) {
         this.clouds = clouds;
     }
-
-
 
     public List<Main> getMain() {
         return main;
@@ -58,11 +59,11 @@ public class WeatherPojo implements Serializable {
         this.main = main;
     }
 
-    public List<Coord> getCoord() {
+    public Map<String, Integer> getCoord() {
         return coord;
     }
 
-    public void setCoord(List<Coord> coord) {
+    public void setCoord(Map<String, Integer> coord) {
         this.coord = coord;
     }
 

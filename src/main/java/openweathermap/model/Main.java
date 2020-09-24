@@ -4,17 +4,20 @@ package openweathermap.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 @Document
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Main{
+public class Main implements Serializable {
     private Long temp;
     private Long feels_like;
-    private Long temp_main;
+    private String temp_main;
     private Long temp_max;
     private Long pressure;
     private Long humidity;
+
+    Main(){}
 
     public Long getTemp() {
         return temp;
@@ -48,11 +51,11 @@ public class Main{
         this.humidity = humidity;
     }
 
-    public Long getTemp_main() {
+    public String getTemp_main() {
         return temp_main;
     }
 
-    public void setTemp_main(Long temp_main) {
+    public void setTemp_main(String temp_main) {
         this.temp_main = temp_main;
     }
 
@@ -63,7 +66,6 @@ public class Main{
     public void setTemp_max(Long temp_max) {
         this.temp_max = temp_max;
     }
-
 
     @Override
     public boolean equals(Object o) {
@@ -86,12 +88,12 @@ public class Main{
     @Override
     public String toString() {
         return "Main{" +
-                "temp='" + temp + '\'' +
-                ", feels_like='" + feels_like + '\'' +
+                "temp=" + temp +
+                ", feels_like=" + feels_like +
                 ", temp_main='" + temp_main + '\'' +
-                ", temp_max='" + temp_max + '\'' +
-                ", pressure='" + pressure + '\'' +
-                ", humidity='" + humidity + '\'' +
+                ", temp_max=" + temp_max +
+                ", pressure=" + pressure +
+                ", humidity=" + humidity +
                 '}';
     }
 }

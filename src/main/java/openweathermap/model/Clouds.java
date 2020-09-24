@@ -1,21 +1,23 @@
 package openweathermap.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Objects;
 
 @Document
 @JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Clouds {
 
-    private String all;
+    private Integer all;
 
-    public String getAll() {
+    public Integer getAll() {
         return all;
     }
 
-    public void setAll(String all) {
+    public void setAll(Integer all) {
         this.all = all;
     }
 
@@ -35,7 +37,7 @@ public class Clouds {
     @Override
     public String toString() {
         return "Clouds{" +
-                "all='" + all + '\'' +
+                "all=" + all +
                 '}';
     }
 }
