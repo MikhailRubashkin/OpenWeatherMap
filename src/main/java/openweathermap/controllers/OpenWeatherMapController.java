@@ -41,10 +41,11 @@ public class OpenWeatherMapController {
 
         URL url = JsonUtils.createUrl(Weather.WEATHER_URL);
         String resultJson = JsonUtils.parseUrl(url);
+        resultJson = resultJson.replaceAll("\\[", "").replaceAll("\\]","");
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
-        WeatherPojo person = mapper.readValue(resultJson, WeatherPojo.class);
-        weatherPojoRepository.save(person);
+        WeatherPojo weatherPojo = mapper.readValue(resultJson, WeatherPojo.class);
+        weatherPojoRepository.save(weatherPojo);
         model.addAttribute("list", openWeatherMapMongoRepository.findAll());
         model.addAttribute("lists", weatherPojoRepository.findAll());
         return "home";

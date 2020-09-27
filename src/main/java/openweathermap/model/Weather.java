@@ -1,21 +1,28 @@
 package openweathermap.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 @Document
-public class Weather{
-    private Long id;
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Weather implements Serializable {
+
+    private String id;
     private String icon;
     private String main;
     private String description;
 
-    public Long getId() {
+    Weather(){}
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

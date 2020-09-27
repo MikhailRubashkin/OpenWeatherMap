@@ -3,13 +3,11 @@ package openweathermap.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.springframework.data.mongodb.core.aggregation.VariableOperators;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
-
-
-import java.util.*;
+import java.util.Map;
+import java.util.Objects;
 
 @Document
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -23,10 +21,8 @@ public class WeatherPojo implements Serializable {
     private Long id;
     private String name;
 
-    WeatherPojo(){}
-
     @JsonProperty("weather")
-    private List<Weather> weathers = new ArrayList<Weather>();
+    private Map<String, String> weather;
 
     @JsonProperty("clouds")
     private Map<String, Integer> clouds;
@@ -35,13 +31,15 @@ public class WeatherPojo implements Serializable {
     private Map<String, Integer> coord;
 
     @JsonProperty("main")
-    private List<Main> main = new ArrayList<Main>();
+    private Map<String, Integer> main;
 
     @JsonProperty("sys")
-    private List<Sys> sys = new ArrayList<Sys>();
+    private Map<String, String> sys;
 
     @JsonProperty("wind")
-    private List<Wind> wind = new ArrayList<Wind>();
+    private Map<String, Integer> wind;
+
+    WeatherPojo(){}
 
     public Map<String, Integer> getClouds() {
         return clouds;
@@ -51,11 +49,11 @@ public class WeatherPojo implements Serializable {
         this.clouds = clouds;
     }
 
-    public List<Main> getMain() {
+    public Map<String, Integer> getMain() {
         return main;
     }
 
-    public void setMain(List<Main> main) {
+    public void setMain(Map<String, Integer> main) {
         this.main = main;
     }
 
@@ -67,28 +65,28 @@ public class WeatherPojo implements Serializable {
         this.coord = coord;
     }
 
-    public List<Sys> getSys() {
+    public Map<String, String> getSys() {
         return sys;
     }
 
-    public void setSys(List<Sys> sys) {
+    public void setSys(Map<String, String> sys) {
         this.sys = sys;
     }
 
-    public List<Wind> getWind() {
+    public Map<String, Integer> getWind() {
         return wind;
     }
 
-    public void setWind(List<Wind> wind) {
+    public void setWind(Map<String, Integer> wind) {
         this.wind = wind;
     }
 
-    public List<Weather> getWeathers() {
-        return weathers;
+    public Map<String, String> getWeather() {
+        return weather;
     }
 
-    public void setWeathers(List<Weather> weathers) {
-        this.weathers = weathers;
+    public void setWeather(Map<String, String> weather) {
+        this.weather = weather;
     }
 
     public String getBase() {
@@ -150,7 +148,7 @@ public class WeatherPojo implements Serializable {
                 Objects.equals(timezone, that.timezone) &&
                 Objects.equals(id, that.id) &&
                 Objects.equals(name, that.name) &&
-                Objects.equals(weathers, that.weathers) &&
+                Objects.equals(weather, that.weather) &&
                 Objects.equals(clouds, that.clouds) &&
                 Objects.equals(coord, that.coord) &&
                 Objects.equals(main, that.main) &&
@@ -160,7 +158,7 @@ public class WeatherPojo implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(base, visibility, dt, timezone, id, name, weathers, clouds, coord, main, sys, wind);
+        return Objects.hash(base, visibility, dt, timezone, id, name, weather, clouds, coord, main, sys, wind);
     }
 
     @Override
@@ -172,7 +170,7 @@ public class WeatherPojo implements Serializable {
                 ", timezone='" + timezone + '\'' +
                 ", id=" + id +
                 ", name='" + name + '\'' +
-                ", weathers=" + weathers +
+                ", weather=" + weather +
                 ", clouds=" + clouds +
                 ", coord=" + coord +
                 ", main=" + main +

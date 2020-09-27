@@ -41,7 +41,7 @@
         <th>Visibility</th>
         <th>dt</th>
         <th>Timezone</th>
-        <th>Weather.main</th>
+        <th>Weather.description</th>
     </tr>
     </thead>
     <tbody>
@@ -52,25 +52,25 @@
         <td th:text="${weatherpojo.visibility}"></td>
         <td th:text="${weatherpojo.dt}"></td>
         <td th:text="${weatherpojo.timezone}"></td>
-        <td th:text="${weatherpojo.weathers}"></td>
+        <td th:text="${weatherpojo.weather.description}"></td>
     </tr>
     </tbody>
 
     <tr>
-        <th>Main</th>
+        <th>Temperature</th>
         <th>Coord</th>
         <th>Clauds</th>
-        <th>Sys</th>
-        <th>Wind</th>
+        <th>Country</th>
+        <th>Wind-speed</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="weatherpojo : ${lists}">
-        <td th:text="${weatherpojo.main}"></td>
+        <td th:text="${weatherpojo.main.temp}"></td>
         <td th:text="${weatherpojo.coord.lat}"></td>
         <td th:text="${weatherpojo.clouds.all}"></td>
-        <td th:text="${weatherpojo.sys}"></td>
-        <td th:text="${weatherpojo.wind}"></td>
+        <td th:text="${weatherpojo.sys.country}"></td>
+        <td th:text="${weatherpojo.wind.speed}"></td>
     </tr>
     </tbody>
 </table>
