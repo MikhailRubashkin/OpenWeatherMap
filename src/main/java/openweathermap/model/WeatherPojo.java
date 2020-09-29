@@ -4,8 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Map;
 import java.util.Objects;
 
@@ -18,8 +20,11 @@ public class WeatherPojo implements Serializable {
     private String visibility;
     private String dt;
     private String timezone;
-    private Long id;
+    private String id;
     private String name;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    private Date date = new Date();
+
 
     @JsonProperty("weather")
     private Map<String, String> weather;
@@ -40,6 +45,14 @@ public class WeatherPojo implements Serializable {
     private Map<String, Integer> wind;
 
     WeatherPojo(){}
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
     public Map<String, Integer> getClouds() {
         return clouds;
@@ -121,11 +134,11 @@ public class WeatherPojo implements Serializable {
         this.timezone = timezone;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -148,6 +161,7 @@ public class WeatherPojo implements Serializable {
                 Objects.equals(timezone, that.timezone) &&
                 Objects.equals(id, that.id) &&
                 Objects.equals(name, that.name) &&
+                Objects.equals(date, that.date) &&
                 Objects.equals(weather, that.weather) &&
                 Objects.equals(clouds, that.clouds) &&
                 Objects.equals(coord, that.coord) &&
@@ -158,7 +172,7 @@ public class WeatherPojo implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(base, visibility, dt, timezone, id, name, weather, clouds, coord, main, sys, wind);
+        return Objects.hash(base, visibility, dt, timezone, id, name, date, weather, clouds, coord, main, sys, wind);
     }
 
     @Override
@@ -168,8 +182,9 @@ public class WeatherPojo implements Serializable {
                 ", visibility='" + visibility + '\'' +
                 ", dt='" + dt + '\'' +
                 ", timezone='" + timezone + '\'' +
-                ", id=" + id +
+                ", id='" + id + '\'' +
                 ", name='" + name + '\'' +
+                ", date=" + date +
                 ", weather=" + weather +
                 ", clouds=" + clouds +
                 ", coord=" + coord +

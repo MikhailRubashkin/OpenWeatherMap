@@ -42,6 +42,7 @@
         <th>dt</th>
         <th>Timezone</th>
         <th>Weather.description</th>
+        <th>Date</th>
     </tr>
     </thead>
     <tbody>
@@ -53,6 +54,7 @@
         <td th:text="${weatherpojo.dt}"></td>
         <td th:text="${weatherpojo.timezone}"></td>
         <td th:text="${weatherpojo.weather.description}"></td>
+        <td th:text="${weatherpojo.date}"></td>
     </tr>
     </tbody>
 
@@ -67,7 +69,7 @@
     <tbody>
     <tr th:each="weatherpojo : ${lists}">
         <td th:text="${weatherpojo.main.temp}"></td>
-        <td th:text="${weatherpojo.coord.lat}"></td>
+        <td th:text="${weatherpojo.coord.lon}"></td>
         <td th:text="${weatherpojo.clouds.all}"></td>
         <td th:text="${weatherpojo.sys.country}"></td>
         <td th:text="${weatherpojo.wind.speed}"></td>

@@ -1,13 +1,11 @@
 package openweathermap.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import openweathermap.model.OpenWeatherMap;
 import openweathermap.model.WeatherPojo;
 import openweathermap.repository.OpenWeatherMapMongoRepository;
 import openweathermap.repository.OpenWeatherMapSearchRepository;
 import openweathermap.repository.WeatherPojoRepository;
-import openweathermap.service.JsonUtils;
 import openweathermap.service.Weather;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,10 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import openweathermap.model.OpenWeatherMap;
-
-import java.net.URL;
 
 @Controller
 public class OpenWeatherMapController {
@@ -36,20 +30,17 @@ public class OpenWeatherMapController {
     private
     OpenWeatherMapSearchRepository openWeatherMapSearchRepository;
 
+    @Autowired
+    private Weather weather;
+
     @RequestMapping("/home")
     public String home(Model model) throws JsonProcessingException {
-
-        URL url = JsonUtils.createUrl(Weather.WEATHER_URL);
-        String resultJson = JsonUtils.parseUrl(url);
-        resultJson = resultJson.replaceAll("\\[", "").replaceAll("\\]","");
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
-        WeatherPojo weatherPojo = mapper.readValue(resultJson, WeatherPojo.class);
-        weatherPojoRepository.save(weatherPojo);
-        model.addAttribute("list", openWeatherMapMongoRepository.findAll());
-        model.addAttribute("lists", weatherPojoRepository.findAll());
+            weather.jsonTo();
+            model.addAttribute("list", openWeatherMapMongoRepository.findAll());
+            model.addAttribute("lists", weatherPojoRepository.findAll());
         return "home";
     }
+
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String add(@ModelAttribute OpenWeatherMap openWeatherMap) {
