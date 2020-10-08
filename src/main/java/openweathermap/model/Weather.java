@@ -1,7 +1,6 @@
 package openweathermap.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
