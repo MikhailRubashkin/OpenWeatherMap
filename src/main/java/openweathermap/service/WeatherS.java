@@ -7,9 +7,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import openweathermap.model.WeatherPojo;
 import openweathermap.repository.WeatherPojoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Service;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class WeatherS {
@@ -21,10 +24,14 @@ public class WeatherS {
             "http://api.openweathermap.org/data/2.5/weather?q=London,uk" +
                     "&units=metric&appid=241de9349721df959d8800c12ca4f1f3";
 
+    public static final String WEATHER_URL2 =
+            "http://api.openweathermap.org/data/2.5/weather?" +
+                    "q=Oslo,&units=metric&appid=77d7bf10384d0beb90e02f4533c37535";
+
 
     public void jsonTo() throws JsonProcessingException {
 
-        URL url = JsonUtils.createUrl(WEATHER_URL);
+        URL url = JsonUtils.createUrl(WEATHER_URL2);
         String resultJson = JsonUtils.parseUrl(url);
         resultJson = resultJson.replaceAll("\\[", "").replaceAll("\\]", "");
         ObjectMapper mapper = new ObjectMapper();
@@ -33,10 +40,30 @@ public class WeatherS {
         weatherPojoRepository.save(weatherPojo);
     }
 
+    public String getTemp() throws JsonProcessingException {
+
+        ArrayList<String> list = new ArrayList<>();
+        URL url = JsonUtils.createUrl(WEATHER_URL2);
+        String resultJson = JsonUtils.parseUrl(url);
+        JsonNode jsonNode = new ObjectMapper().readTree(resultJson);
+        Integer temp = jsonNode.findPath("temp").intValue();
+        String name = jsonNode.findPath("name").textValue();
+        Converter<Integer, String> converter = String::valueOf;
+        String converted = converter.convert(temp);
+
+        list.add(name);
+        list.add("-");
+        list.add(converted);
+        list.add("°C");
+        String a = list.toString();
+        a = a.replaceAll("\\,", "").replaceAll("\\]", "").replaceAll("\\[", "");
+        return a;
+    }
+
 
     public String getIcon() throws JsonProcessingException {
 
-        URL url = JsonUtils.createUrl(WEATHER_URL);
+        URL url = JsonUtils.createUrl(WEATHER_URL2);
         String resultJson = JsonUtils.parseUrl(url);
         JsonNode jsonNode = new ObjectMapper().readTree(resultJson);
         String icon = jsonNode.findPath("icon").textValue();
