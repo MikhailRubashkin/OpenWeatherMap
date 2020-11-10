@@ -30,8 +30,7 @@ public class WeatherS {
 
 
     public void jsonTo() throws JsonProcessingException {
-
-        URL url = JsonUtils.createUrl(WEATHER_URL2);
+        URL url = JsonUtils.createUrl(WEATHER_URL);
         String resultJson = JsonUtils.parseUrl(url);
         resultJson = resultJson.replaceAll("\\[", "").replaceAll("\\]", "");
         ObjectMapper mapper = new ObjectMapper();
@@ -41,7 +40,6 @@ public class WeatherS {
     }
 
     public String getTemp() throws JsonProcessingException {
-
         ArrayList<String> list = new ArrayList<>();
         URL url = JsonUtils.createUrl(WEATHER_URL2);
         String resultJson = JsonUtils.parseUrl(url);
@@ -52,7 +50,7 @@ public class WeatherS {
         String converted = converter.convert(temp);
 
         list.add(name);
-        list.add("-");
+        list.add(" ");
         list.add(converted);
         list.add("°C");
         String a = list.toString();
@@ -62,8 +60,7 @@ public class WeatherS {
 
 
     public String getIcon() throws JsonProcessingException {
-
-        URL url = JsonUtils.createUrl(WEATHER_URL2);
+        URL url = JsonUtils.createUrl(WEATHER_URL);
         String resultJson = JsonUtils.parseUrl(url);
         JsonNode jsonNode = new ObjectMapper().readTree(resultJson);
         String icon = jsonNode.findPath("icon").textValue();

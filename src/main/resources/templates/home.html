@@ -43,10 +43,10 @@ function myFunction() {
 <table>
     <thead>
     <tr>
-        <th>Day</th>
+        <th>Visibility</th>
         <th>City</th>
         <th>Description</th>
-        <th>Year</th>
+        <th>Temperature</th>
     </tr>
     </thead>
     <tbody>
@@ -126,18 +126,25 @@ function myFunction() {
         <td th:case="'Not found'">Not found</td>
     </tr>
     </tbody>
-
 </table>
+<br/>
 
-<br />
+
+
 <h2>Add</h2>
+<tr th:each="weatherpojo : ${lists}">
 <form action="/add" method="POST">
-    Day <input type="text" id="day" name="day" /><br />
-    City <input type="text" id="city" name="city" /><br />
-    Year <input type="text" id="year" name="year" /><br />
-    Description <textarea rows="5" cols="70" id="description" name="description"></textarea><br />
+    Visibility <input type="text" th:value="${weatherpojo.visibility}"  id="day" name="day"/><br/>
+    City <input type="text" th:value="${weatherpojo.name}" id="city" name="city" /><br />
+    Temperature <input type="text" th:value="${weatherpojo.main.temp}" id="year" name="year"/><br/>
+    Description <input type="text" th:value="${weatherpojo.weather.description}" id="description" name="description"/><br/>
     <input type="submit" />
 </form>
+</tr>
+
+
+
+
 <h2>Search</h2>
 <form action="/search" method="POST">
     <input type="text" name="search" id="search" th:value="${search}" />
