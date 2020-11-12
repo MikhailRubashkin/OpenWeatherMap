@@ -33,6 +33,7 @@ function myFunction() {
         success : function(data) {
             console.log(data);
              $("#paragraph").text(data.lists);
+
         }
     });
 }
@@ -59,71 +60,44 @@ function myFunction() {
     </tbody>
 </table>
 
-<a>Weather London</a>
+<a>Weather City</a>
 <table>
     <thead>
     <tr>
-        <th>Name</th>
-        <th>Base</th>
-        <th>Id</th>
+        <th>Icon</th>
+        <th>City</th>
+        <th>Temperature</th>
+        <th>Country</th>
         <th>Visibility</th>
-        <th>dt</th>
-        <th>Timezone</th>
+        <th>Wind speed</th>
         <th>Weather.description</th>
         <th>Date</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="weatherpojo : ${lists}">
-        <td th:text="${weatherpojo.name}"></td>
-        <td th:text="${weatherpojo.base}"></td>
-        <td th:text="${weatherpojo.id}"></td>
-        <td th:text="${weatherpojo.visibility}"></td>
-        <td th:text="${weatherpojo.dt}"></td>
-        <td th:text="${weatherpojo.timezone}"></td>
-        <td th:text="${weatherpojo.weather.description}"></td>
-        <td th:text="${weatherpojo.date}"></td>
-    </tr>
-    </tbody>
 
-    <tr>
-        <th>Temperature</th>
-        <th>Coord</th>
-        <th>Clauds</th>
-        <th>Country</th>
-        <th>Wind-speed</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="weatherpojo : ${lists}">
-        <td th:text="${weatherpojo.main.temp}"></td>
-        <td th:text="${weatherpojo.coord.lon}"></td>
-        <td th:text="${weatherpojo.clouds.all}"></td>
-        <td th:text="${weatherpojo.sys.country}"></td>
-        <td th:text="${weatherpojo.wind.speed}"></td>
-    </tr>
-    </tbody>
-
-    <tr>
-        <th>Icon</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:switch="${list3}">
-        <td th:case="'http://openweathermap.org/img/wn/01d@2x.png'"><img src="http://openweathermap.org/img/wn/01d@2x.png" height="60" width="60" alt=""></a></td>
-        <td th:case="'http://openweathermap.org/img/wn/02d@2x.png'"><img src="http://openweathermap.org/img/wn/02d@2x.png" height="60" width="60" alt=""></a></td>
-        <td th:case="'http://openweathermap.org/img/wn/03d@2x.png'"><img src="http://openweathermap.org/img/wn/03d@2x.png" height="60" width="60" alt=""></a></td>
-        <td th:case="'http://openweathermap.org/img/wn/04d@2x.png'"><img src="http://openweathermap.org/img/wn/04d@2x.png" height="60" width="60" alt=""></a></td>
-        <td th:case="'http://openweathermap.org/img/wn/09d@2x.png'"><img src="http://openweathermap.org/img/wn/09d@2x.png" height="60" width="60" alt=""></a></td>
-        <td th:case="'http://openweathermap.org/img/wn/10d@2x.png'"><img src="http://openweathermap.org/img/wn/10d@2x.png" height="60" width="60" alt=""></a></td>
-        <td th:case="'http://openweathermap.org/img/wn/11d@2x.png'"><img src="http://openweathermap.org/img/wn/11d@2x.png" height="60" width="60" alt=""></a></td>
-        <td th:case="'http://openweathermap.org/img/wn/13d@2x.png'"><img src="http://openweathermap.org/img/wn/13d@2x.png" height="60" width="60" alt=""></a></td>
-        <td th:case="'http://openweathermap.org/img/wn/50d@2x.png'"><img src="http://openweathermap.org/img/wn/50d@2x.png" height="60" width="60" alt=""></a></td>
-        <td th:case="'http://openweathermap.org/img/wn/01n@2x.png'"><img src="http://openweathermap.org/img/wn/01n@2x.png" height="60" width="60" alt=""></a></td>
-        <td th:case="'http://openweathermap.org/img/wn/02n@2x.png'"><img src="http://openweathermap.org/img/wn/02n@2x.png" height="60" width="60" alt=""></a></td>
-        <td th:case="'http://openweathermap.org/img/wn/10n@2x.png'"><img src="http://openweathermap.org/img/wn/10n@2x.png" height="60" width="60" alt=""></a></td>
+    <tr th:switch="${list3}", th:each="weatherpojo : ${lists}">
+        <td th:case="'http://openweathermap.org/img/wn/01d@2x.png'"><img src="http://openweathermap.org/img/wn/01d@2x.png" height="30" width="30" alt=""></td>
+        <td th:case="'http://openweathermap.org/img/wn/02d@2x.png'"><img src="http://openweathermap.org/img/wn/02d@2x.png" height="30" width="30" alt=""></td>
+        <td th:case="'http://openweathermap.org/img/wn/03d@2x.png'"><img src="http://openweathermap.org/img/wn/03d@2x.png" height="30" width="30" alt=""></td>
+        <td th:case="'http://openweathermap.org/img/wn/04d@2x.png'"><img src="http://openweathermap.org/img/wn/04d@2x.png" height="30" width="30" alt=""></td>
+        <td th:case="'http://openweathermap.org/img/wn/09d@2x.png'"><img src="http://openweathermap.org/img/wn/09d@2x.png" height="30" width="30" alt=""></td>
+        <td th:case="'http://openweathermap.org/img/wn/10d@2x.png'"><img src="http://openweathermap.org/img/wn/10d@2x.png" height="30" width="30" alt=""></td>
+        <td th:case="'http://openweathermap.org/img/wn/11d@2x.png'"><img src="http://openweathermap.org/img/wn/11d@2x.png" height="30" width="30" alt=""></td>
+        <td th:case="'http://openweathermap.org/img/wn/13d@2x.png'"><img src="http://openweathermap.org/img/wn/13d@2x.png" height="30" width="30" alt=""></td>
+        <td th:case="'http://openweathermap.org/img/wn/50d@2x.png'"><img src="http://openweathermap.org/img/wn/50d@2x.png" height="30" width="30" alt=""></td>
+        <td th:case="'http://openweathermap.org/img/wn/01n@2x.png'"><img src="http://openweathermap.org/img/wn/01n@2x.png" height="30" width="30" alt=""></td>
+        <td th:case="'http://openweathermap.org/img/wn/02n@2x.png'"><img src="http://openweathermap.org/img/wn/02n@2x.png" height="30" width="30" alt=""></td>
+        <td th:case="'http://openweathermap.org/img/wn/10n@2x.png'"><img src="http://openweathermap.org/img/wn/10n@2x.png" height="30" width="30" alt=""></td>
         <td th:case="*">Not found</td>
         <td th:case="'Not found'">Not found</td>
+        <td th:text="${weatherpojo.name}"></td>
+        <td th:text="${weatherpojo.main.temp}"></td>
+        <td th:text="${weatherpojo.sys.country}"></td>
+        <td th:text="${weatherpojo.visibility}"></td>
+        <td th:text="${weatherpojo.wind.speed}"></td>
+        <td th:text="${weatherpojo.weather.description}"></td>
+        <td th:text="${weatherpojo.date}"></td>
     </tr>
     </tbody>
 </table>
